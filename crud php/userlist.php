@@ -1,3 +1,9 @@
+<?php
+require_once('db.php');
+$select = "SELECT * FROM user";
+$query_data = mysqli_query($db, $select);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,33 +13,30 @@
 </head>
 <body class="container mx-auto">
 <table class="table">
-        
+        <h2 class="text-center">All User</h2>
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          <?php
+             foreach($query_data as $key => $value)
+             {
+               ?>
+                <tr>
+                  <th scope="row"><?php echo $key+1; ?></th>
+                  <td><?php echo $value['name']; ?></td>
+                  <td><?php echo $value['email']; ?></td>
+                  <td>
+                     <a href="" class="btn btn-outline-danger">Delete</a>
+                     <a href="" class="btn btn-outline-warning">Edit</a>
+                  </td>                
+              <?php }
+             ?>
         </tbody>
       </table>
 

@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     if($query)
     {
-      echo "Successfully registered";
+      header('location: login.php');
     }
     else
     {
