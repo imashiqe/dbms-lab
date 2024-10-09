@@ -6,11 +6,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $insert = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+    $insert = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
     $query = mysqli_query($db, $insert);
     if($query)
     {
-      header("Location: login.php");
+      echo "Successfully registered";
     }
     else
     {
