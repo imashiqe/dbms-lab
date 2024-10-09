@@ -7,7 +7,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $password = $_POST['password'];
 
     $insert = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
+    $user_check = "SELECT COUNT(*) as total FROM user WHERE email = '$email'";
     $query = mysqli_query($db, $insert);
+    $q = mysqli_query($db, $user_check);
+    $after_assoc = mysqli_fetch_assoc($q);
+    if($after_assoc['total'] > 0)
+    {
+      echo "Email already exists";
+    }
+    else{
+      echo "Email does not exist";
+    }
     if($query)
     {
       echo "Successfully registered";
