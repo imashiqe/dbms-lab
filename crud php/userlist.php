@@ -14,6 +14,16 @@ $query_data = mysqli_query($db, $select);
 <body class="container mx-auto">
 <table class="table">
         <h2 class="text-center">All User</h2>
+        <?php
+          if(isset($_SESSION['delete_user'])){
+            ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $_SESSION['delete_user']; ?>
+            </div>
+            <?php
+          }
+              
+        ?>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -29,10 +39,10 @@ $query_data = mysqli_query($db, $select);
                ?>
                 <tr>
                   <th scope="row"><?php echo $key+1; ?></th>
-                  <td><?php echo $value['name']; ?></td>
-                  <td><?php echo $value['email']; ?></td>
+                  <td><?= $value['name'] ?></td>
+                  <td><?= $value['email'] ?></td>
                   <td>
-                     <a href="" class="btn btn-outline-danger">Delete</a>
+                     <a href="user-delete.php?user_id<?= $value['id'] ?>" class="btn btn-outline-danger">Delete</a>
                      <a href="" class="btn btn-outline-warning">Edit</a>
                   </td>                
               <?php }

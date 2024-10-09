@@ -4,7 +4,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); ;
 
     $insert = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
     $user_check = "SELECT COUNT(*) as total FROM user WHERE email = '$email'";
